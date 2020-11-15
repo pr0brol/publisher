@@ -6,11 +6,15 @@ import com.example.subscriber.entities.Purchase;
 import com.example.subscriber.entities.Subscription;
 import com.example.subscriber.repository.PurchaseRepository;
 import com.example.subscriber.repository.SubscriptionRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MessageService {
+
+    private Logger logger = LoggerFactory.getLogger(MessageService.class);
 
     private PurchaseRepository purchaseRepository;
     private SubscriptionRepository subscriptionRepository;
@@ -29,12 +33,20 @@ public class MessageService {
         if(msg == null) return;
 
         if(msg.getAction().equals(ActionEnum.PURCHASE)){
-            Purchase purchase = savePurchase(msg);
-            System.out.println(purchase);
+            try {
+                savePurchase(msg);
+                logger.info("message save");
+            }catch (Exception e){
+                logger.error("message not save. error: " + e.getMessage());
+            }
         }
         if(msg.getAction().equals(ActionEnum.SUBSCRIPTION)) {
-            Subscription subscription = saveSubscription(msg);
-            System.out.println(subscription);
+            try {
+                saveSubscription(msg);
+                logger.info("message save");
+            }catch (Exception e){
+                logger.error("message not save. error: " + e.getMessage());
+            }
         }
     }
 

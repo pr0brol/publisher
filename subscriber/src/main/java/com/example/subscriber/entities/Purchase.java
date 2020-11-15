@@ -8,15 +8,15 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "Purchase")
-@Table(name = "purchase")
-@NoArgsConstructor
+@Entity
+@Table
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Purchase {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "purchase_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", updatable=false, nullable=false)
     private long id;
 

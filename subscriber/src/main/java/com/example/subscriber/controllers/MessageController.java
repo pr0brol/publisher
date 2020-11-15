@@ -23,9 +23,4 @@ public class MessageController {
     public void incomingMessage(@RequestBody Message msg){
         if(msg != null) messageService.saveMessage(msg);
     }
-
-    @GetMapping("/hello")
-    public String test(){
-        return "hello";
-    }
 }

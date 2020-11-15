@@ -13,9 +13,4 @@ CREATE TABLE IF NOT EXISTS  purchase (
   send_time               TIMESTAMP NOT NULL
 );
 
-create sequence hibernate_sequence;
-
-CREATE sequence seq_purchase start 1;
-
-create sequence seq_subscription start 1;
 
